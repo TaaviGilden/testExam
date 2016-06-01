@@ -1,0 +1,35 @@
+  <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Plant</th>
+            <th class="text-center">Start date</th>
+            <th class="text-center">End date</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">PO Info</th>
+
+            <th class="text-center">Total</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#phr of phrs">
+            <td>
+                {{phr.plant.name}}
+            </td>
+            <td>{{phr.rentalPeriod.startDate}}</td>
+            <td>{{phr.rentalPeriod.endDate}}</td>
+            <td>{{phr.status}}</td>
+            <td class='text-center'>
+            </td>
+            <td class='text-right'>{{phr.total | number:'.2'}}</td>
+            <td class='text-center'>
+                <button class="btn btn-xs" *ngFor="#link of phr._xlinks"
+                    [ngClass]="{'btn-success':link.method=='POST', 
+                                'btn-danger':link.method=='DELETE'}"
+                    (click)="follow(link)">
+                {{link._rel}}
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
